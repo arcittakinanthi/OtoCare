@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">OtoCare</string>
+    <string name="app_description">Catat riwayat servis kendaraan dan cek jadwal servis berikutnya dengan mudah.</string>
+
+    <string name="tambah_servis">Tambah Servis</string>
+    <string name="ubah_servis">Ubah Servis</string>
+
+    <string name="nama_kendaraan">Nama Kendaraan</string>
+    <string name="nomor_polisi">Nomor Polisi</string>
+    <string name="jenis_servis">Jenis Servis</string>
+    <string name="tanggal_servis">Tanggal Servis Terakhir</string>
+    <string name="interval_bulan">Interval Servis Berikutnya</string>
+
+    <string name="contoh_tanggal">Contoh: 2026-05-30</string>
+    <string name="contoh_interval">Contoh: 3</string>
+
+    <string name="simpan">Simpan</string>
+    <string name="perbarui">Perbarui</string>
+    <string name="hapus">Hapus</string>
+    <string name="batal">Batal</string>
+    <string name="konfirmasi_hapus">Hapus data servis ini?</string>
+    <string name="data_kosong">Data tidak boleh kosong.</string>
+
+    <string name="grid">Tampilan grid</string>
+    <string name="list">Tampilan list</string>
 </resources>

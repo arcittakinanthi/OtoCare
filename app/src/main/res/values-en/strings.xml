@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OtoCare</string>
+    <string name="app_description">Record your vehicle\'s service history and easily check the next service schedule.</string>
+    <string name="tambah_servis">Add Service</string>
+    <string name="ubah_servis">Change Service</string>
+    <string name="nama_kendaraan">Vehicle Name</string>
+    <string name="nomor_polisi">Police number</string>
+    <string name="jenis_servis">Service Type</string>
+    <string name="tanggal_servis">Last Service Date</string>
+    <string name="interval_bulan">Next Service Interval</string>
+    <string name="contoh_tanggal">Example: 2026-05-30</string>
+    <string name="contoh_interval">Example: 3</string>
+    <string name="simpan">Save</string>
+    <string name="perbarui">Update</string>
+    <string name="hapus">Delete</string>
+    <string name="batal">Cancelled</string>
+    <string name="konfirmasi_hapus">Delete this service data?</string>
+    <string name="data_kosong">Data cannot be empty.</string>
+    <string name="grid">Grid view</string>
+    <string name="list">List view</string>
+</resources>
