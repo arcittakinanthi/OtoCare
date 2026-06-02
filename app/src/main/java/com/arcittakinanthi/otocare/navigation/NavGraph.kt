@@ -1,7 +1,5 @@
 package com.arcittakinanthi.otocare.navigation
 
-package com.arcittakinanthi.otocare.navigation
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
