@@ -3,45 +3,29 @@ package com.arcittakinanthi.otocare
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.rememberNavController
+import com.arcittakinanthi.otocare.navigation.NavGraph
+import com.arcittakinanthi.otocare.screen.MainViewModel
 import com.arcittakinanthi.otocare.ui.theme.OtoCareTheme
+import com.arcittakinanthi.otocare.util.ViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val factory = ViewModelFactory(applicationContext)
+        val viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+
         setContent {
             OtoCareTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navController = rememberNavController()
+
+                NavGraph(
+                    navController = navController,
+                    viewModel = viewModel
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    OtoCareTheme {
-        Greeting("Android")
     }
 }
