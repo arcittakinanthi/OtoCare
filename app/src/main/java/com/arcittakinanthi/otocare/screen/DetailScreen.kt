@@ -32,11 +32,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.arcittakinanthi.otocare.R
 import android.net.Uri
-import android.widget.Button
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
 import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,8 +63,6 @@ fun DetailScreen(
         ) { uri ->
             imageUri = uri
         }
-    imageUri: Uri?,
-    onPickImage: () -> Unit
 
     var expanded by remember { mutableStateOf(false) }
     var openDialog by remember { mutableStateOf(false) }
@@ -227,6 +225,13 @@ fun DetailScreen(
             intervalMonth = intervalMonth,
             onIntervalMonthChange = { intervalMonth = it },
             serviceOptions = serviceOptions,
+
+            imageUri = imageUri,
+
+            onPickImage = {
+                launcher.launch("image/*")
+            },
+
             modifier = Modifier
                 .padding(innerPadding)
                 .padding(16.dp)
@@ -247,17 +252,22 @@ fun FormService(
     intervalMonth: String,
     onIntervalMonthChange: (String) -> Unit,
     serviceOptions: List<String>,
+    imageUri: Uri?,
+    onPickImage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
     ) {
-
-        androidx.compose.material3.Button(
+        Button(
             onClick = onPickImage
         ) {
             Text("Pilih Foto Kendaraan")
         }
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
 
         imageUri?.let {
 

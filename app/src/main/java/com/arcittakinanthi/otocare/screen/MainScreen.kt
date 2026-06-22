@@ -46,15 +46,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.arcittakinanthi.otocare.R
 import com.arcittakinanthi.otocare.model.ServiceRecord
-import com.arcittakinanthi.otocare.navigation.Screen
 import com.arcittakinanthi.otocare.util.SettingsDataStore
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -173,7 +172,7 @@ fun MainScreen(
                     text = apiData[0].vehicleName
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(12.dp))
 
             if (data.isEmpty()) {
