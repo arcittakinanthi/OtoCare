@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -47,6 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.arcittakinanthi.otocare.R
 import com.arcittakinanthi.otocare.model.ServiceRecord
+import com.arcittakinanthi.otocare.navigation.Screen
 import com.arcittakinanthi.otocare.util.SettingsDataStore
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -58,7 +60,8 @@ import java.time.temporal.ChronoUnit
 fun MainScreen(
     viewModel: MainViewModel,
     onAddClick: () -> Unit,
-    onEditClick: (Long) -> Unit
+    onEditClick: (Long) -> Unit,
+    onProfileClick: () -> Unit
 ) {
     val data by viewModel.data.collectAsState()
     val status by viewModel.status.collectAsState()
@@ -97,6 +100,16 @@ fun MainScreen(
             TopAppBar(
                 title = { Text(text = stringResource(R.string.app_name)) },
                 actions = {
+                    IconButton(
+                        onClick = {
+                            onProfileClick()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.AccountCircle,
+                            contentDescription = null
+                        )
+                    }
                     IconButton(
                         onClick = {
                             coroutineScope.launch {

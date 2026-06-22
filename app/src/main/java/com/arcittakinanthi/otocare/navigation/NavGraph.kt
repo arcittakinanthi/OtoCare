@@ -10,6 +10,7 @@ import com.arcittakinanthi.otocare.screen.DetailScreen
 import com.arcittakinanthi.otocare.screen.LoginScreen
 import com.arcittakinanthi.otocare.screen.MainScreen
 import com.arcittakinanthi.otocare.screen.MainViewModel
+import com.arcittakinanthi.otocare.screen.ProfileScreen
 
 @Composable
 fun NavGraph(
@@ -28,6 +29,9 @@ fun NavGraph(
                 },
                 onEditClick = { id ->
                     navController.navigate(Screen.FormUbah.withId(id))
+                },
+                onProfileClick = {
+                    navController.navigate(Screen.Profile.route)
                 }
             )
         }
@@ -56,6 +60,17 @@ fun NavGraph(
             LoginScreen(
                 onLoginClick = {
                     navController.navigate(Screen.Home.route)
+                }
+            )
+        }
+
+        composable(Screen.Profile.route) {
+
+            ProfileScreen(
+                onLogout = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(0)
+                    }
                 }
             )
         }
