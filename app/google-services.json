@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "71919359892",
+    "project_id": "otocare-ea341",
+    "storage_bucket": "otocare-ea341.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71919359892:android:f01050502fd119301c2181",
+        "android_client_info": {
+          "package_name": "com.arcittakinanthi.otocare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71919359892-un6o7mkstonjcdbto0f03a28rk2lvupj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arcittakinanthi.otocare",
+            "certificate_hash": "c29e298a1b5c3ed480b180dcc2adf0a1ac3b0a9d"
+          }
+        },
+        {
+          "client_id": "71919359892-bv56h53qjamb6earoqmv9bidv69q6ulu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDLetnGgAG3Qc5iNb7hu4uPXS351rdysk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71919359892-bv56h53qjamb6earoqmv9bidv69q6ulu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

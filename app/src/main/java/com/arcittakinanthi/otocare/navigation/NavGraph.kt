@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.arcittakinanthi.otocare.screen.DetailScreen
+import com.arcittakinanthi.otocare.screen.LoginScreen
 import com.arcittakinanthi.otocare.screen.MainScreen
 import com.arcittakinanthi.otocare.screen.MainViewModel
 
@@ -17,7 +18,7 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = Screen.Login.route
     ) {
         composable(Screen.Home.route) {
             MainScreen(
@@ -46,6 +47,15 @@ fun NavGraph(
                 viewModel = viewModel,
                 onBackClick = {
                     navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.Login.route) {
+
+            LoginScreen(
+                onLoginClick = {
+                    navController.navigate(Screen.Home.route)
                 }
             )
         }
