@@ -54,6 +54,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -156,6 +157,23 @@ fun MainScreen(
                 text = "Data API: ${apiData.size}"
             )
 
+            if (apiData.isNotEmpty()) {
+
+                AsyncImage(
+                    model = apiData[0].imageUrl,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(
+                    text = apiData[0].vehicleName
+                )
+            }
+            
             Spacer(modifier = Modifier.height(12.dp))
 
             if (data.isEmpty()) {
