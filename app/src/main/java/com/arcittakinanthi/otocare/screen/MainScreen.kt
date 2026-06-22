@@ -3,6 +3,7 @@ package com.arcittakinanthi.otocare.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,8 +20,10 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -58,10 +61,36 @@ fun MainScreen(
     onEditClick: (Long) -> Unit
 ) {
     val data by viewModel.data.collectAsState()
+    val status by viewModel.status.collectAsState()
+    val apiData by viewModel.apiData.collectAsState()
+
     val context = LocalContext.current
     val settingsDataStore = remember { SettingsDataStore(context) }
     val showList by settingsDataStore.layoutFlow.collectAsState(initial = true)
     val coroutineScope = rememberCoroutineScope()
+
+    if (status == ApiStatus.LOADING) {
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+
+        return
+    }
+
+    if (status == ApiStatus.FAILED) {
+
+        ErrorContent(
+            onRetry = {
+                viewModel.retrieveData()
+            }
+        )
+
+        return
+    }
 
     Scaffold(
         topBar = {
@@ -107,6 +136,12 @@ fun MainScreen(
                 .padding(16.dp)
         ) {
             HeaderOtoCare()
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "Data API: ${apiData.size}"
+            )
 
             Spacer(modifier = Modifier.height(12.dp))
 
@@ -365,5 +400,31 @@ fun hitungSisaHari(
         }
     } catch (_: Exception) {
         "Tanggal tidak valid"
+    }
+}
+
+@Composable
+fun ErrorContent(
+    onRetry: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Text(
+            text = "Gagal memuat data dari server"
+        )
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
+
+        Button(
+            onClick = onRetry
+        ) {
+            Text("Coba Lagi")
+        }
     }
 }
