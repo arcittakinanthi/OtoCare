@@ -1,5 +1,6 @@
 package com.arcittakinanthi.otocare.screen
 
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +45,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.arcittakinanthi.otocare.R
@@ -300,6 +300,22 @@ fun ServiceListItem(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+
+            if (record.imageUri.isNotEmpty()) {
+
+                AsyncImage(
+                    model = Uri.parse(record.imageUri),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(180.dp)
+                )
+
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
+            }
+
             Text(
                 text = record.vehicleName,
                 style = MaterialTheme.typography.titleMedium,
@@ -315,23 +331,19 @@ fun ServiceListItem(
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = "Jenis servis: ${record.serviceType}",
-                style = MaterialTheme.typography.bodySmall
+                text = "Jenis servis: ${record.serviceType}"
             )
 
             Text(
-                text = "Terakhir servis: ${record.lastServiceDate}",
-                style = MaterialTheme.typography.bodySmall
+                text = "Terakhir servis: ${record.lastServiceDate}"
             )
 
             Text(
-                text = "Servis berikutnya: $nextDate",
-                style = MaterialTheme.typography.bodySmall
+                text = "Servis berikutnya: $nextDate"
             )
 
             Text(
                 text = remainingDays,
-                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.primary
             )
         }
@@ -355,46 +367,48 @@ fun ServiceGridItem(
         Column(
             modifier = Modifier.padding(12.dp)
         ) {
+
+            if (record.imageUri.isNotEmpty()) {
+
+                AsyncImage(
+                    model = Uri.parse(record.imageUri),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(120.dp)
+                )
+
+                Spacer(
+                    modifier = Modifier.height(6.dp)
+                )
+            }
+
             Text(
                 text = record.vehicleName,
                 style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                fontWeight = FontWeight.Bold
             )
 
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = record.plateNumber,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.primary,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                color = MaterialTheme.colorScheme.primary
             )
 
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = record.serviceType,
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                text = record.serviceType
             )
 
             Text(
-                text = "Next: $nextDate",
-                style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                text = "Next: $nextDate"
             )
 
             Text(
                 text = remainingDays,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.primary,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

@@ -122,4 +122,37 @@ class MainViewModel(
             dao.deleteById(id)
         }
     }
+
+    fun addServiceToApi(
+        vehicleName: String,
+        plateNumber: String,
+        serviceType: String,
+        lastServiceDate: String,
+        intervalMonth: Int,
+        imageUrl: String
+    ) {
+
+        viewModelScope.launch {
+
+            try {
+
+                OtoCareApi.service.addService(
+                    ServiceResponse(
+                        id = "",
+                        vehicleName = vehicleName,
+                        plateNumber = plateNumber,
+                        serviceType = serviceType,
+                        lastServiceDate = lastServiceDate,
+                        intervalMonth = intervalMonth,
+                        imageUrl = imageUrl
+                    )
+                )
+
+                retrieveData()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 }

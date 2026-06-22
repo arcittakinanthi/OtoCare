@@ -169,6 +169,15 @@ fun DetailScreen(
                                         imageUri = imageUri?.toString() ?: ""
                                     )
 
+                                    viewModel.addServiceToApi(
+                                        vehicleName = vehicleName,
+                                        plateNumber = plateNumber,
+                                        serviceType = serviceType,
+                                        lastServiceDate = lastServiceDate,
+                                        intervalMonth = interval,
+                                        imageUrl = "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg"
+                                    )
+
                                     Toast.makeText(
                                         context,
                                         "Data servis berhasil disimpan.",
