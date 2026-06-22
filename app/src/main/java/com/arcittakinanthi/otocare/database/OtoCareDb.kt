@@ -8,7 +8,7 @@ import com.arcittakinanthi.otocare.model.ServiceRecord
 
 @Database(
     entities = [ServiceRecord::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class OtoCareDb : RoomDatabase() {
@@ -28,7 +28,9 @@ abstract class OtoCareDb : RoomDatabase() {
                         context.applicationContext,
                         OtoCareDb::class.java,
                         "otocare.db"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
 
                     INSTANCE = instance
                 }

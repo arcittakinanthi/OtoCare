@@ -31,6 +31,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.arcittakinanthi.otocare.R
+import android.net.Uri
+import android.widget.Button
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,6 +54,17 @@ fun DetailScreen(
     var serviceType by remember { mutableStateOf("") }
     var lastServiceDate by remember { mutableStateOf("") }
     var intervalMonth by remember { mutableStateOf("") }
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+    val launcher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.GetContent()
+        ) { uri ->
+            imageUri = uri
+        }
+    imageUri: Uri?,
+    onPickImage: () -> Unit
 
     var expanded by remember { mutableStateOf(false) }
     var openDialog by remember { mutableStateOf(false) }
@@ -134,7 +152,8 @@ fun DetailScreen(
                                         plateNumber = plateNumber,
                                         serviceType = serviceType,
                                         lastServiceDate = lastServiceDate,
-                                        intervalMonth = interval
+                                        intervalMonth = interval,
+                                        imageUri = imageUri?.toString() ?: ""
                                     )
 
                                     Toast.makeText(
@@ -148,7 +167,8 @@ fun DetailScreen(
                                         plateNumber = plateNumber,
                                         serviceType = serviceType,
                                         lastServiceDate = lastServiceDate,
-                                        intervalMonth = interval
+                                        intervalMonth = interval,
+                                        imageUri = imageUri?.toString() ?: ""
                                     )
 
                                     Toast.makeText(
@@ -232,6 +252,27 @@ fun FormService(
     Column(
         modifier = modifier
     ) {
+
+        androidx.compose.material3.Button(
+            onClick = onPickImage
+        ) {
+            Text("Pilih Foto Kendaraan")
+        }
+
+        imageUri?.let {
+
+            AsyncImage(
+                model = it,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            )
+
+            Spacer(
+                modifier = Modifier.height(8.dp)
+            )
+        }
         OutlinedTextField(
             value = vehicleName,
             onValueChange = onVehicleNameChange,

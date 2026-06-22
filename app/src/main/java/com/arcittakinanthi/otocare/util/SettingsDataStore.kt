@@ -7,21 +7,46 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-private val Context.dataStore by preferencesDataStore(name = "settings")
+private val Context.dataStore by preferencesDataStore(
+    name = "settings"
+)
 
-class SettingsDataStore(private val context: Context) {
+class SettingsDataStore(
+    private val context: Context
+) {
 
     companion object {
-        private val LAYOUT_KEY = booleanPreferencesKey("layout_key")
+
+        private val LAYOUT_KEY =
+            booleanPreferencesKey("layout_key")
+
+        private val LOGIN_KEY =
+            booleanPreferencesKey("login_key")
     }
 
-    val layoutFlow: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[LAYOUT_KEY] ?: true
+    val layoutFlow: Flow<Boolean> =
+        context.dataStore.data.map {
+            it[LAYOUT_KEY] ?: true
+        }
+
+    val loginFlow: Flow<Boolean> =
+        context.dataStore.data.map {
+            it[LOGIN_KEY] ?: false
+        }
+
+    suspend fun saveLayout(
+        isList: Boolean
+    ) {
+        context.dataStore.edit {
+            it[LAYOUT_KEY] = isList
+        }
     }
 
-    suspend fun saveLayout(isList: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[LAYOUT_KEY] = isList
+    suspend fun saveLogin(
+        isLogin: Boolean
+    ) {
+        context.dataStore.edit {
+            it[LOGIN_KEY] = isLogin
         }
     }
 }

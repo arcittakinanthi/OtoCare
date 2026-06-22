@@ -73,7 +73,8 @@ class MainViewModel(
         plateNumber: String,
         serviceType: String,
         lastServiceDate: String,
-        intervalMonth: Int
+        intervalMonth: Int,
+        imageUri: String
     ) {
 
         val record = ServiceRecord(
@@ -81,7 +82,8 @@ class MainViewModel(
             plateNumber = plateNumber,
             serviceType = serviceType,
             lastServiceDate = lastServiceDate,
-            intervalMonth = intervalMonth
+            intervalMonth = intervalMonth,
+            imageUri = imageUri
         )
 
         viewModelScope.launch(Dispatchers.IO) {
@@ -95,7 +97,8 @@ class MainViewModel(
         plateNumber: String,
         serviceType: String,
         lastServiceDate: String,
-        intervalMonth: Int
+        intervalMonth: Int,
+        imageUri: String
     ) {
 
         val record = ServiceRecord(
@@ -104,7 +107,8 @@ class MainViewModel(
             plateNumber = plateNumber,
             serviceType = serviceType,
             lastServiceDate = lastServiceDate,
-            intervalMonth = intervalMonth
+            intervalMonth = intervalMonth,
+            imageUri = imageUri
         )
 
         viewModelScope.launch(Dispatchers.IO) {
